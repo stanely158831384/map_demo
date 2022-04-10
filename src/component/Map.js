@@ -41,6 +41,9 @@ function Map(){
             data['text'] = e.result.text;
             data['lon'] = e.result.center[0];
             data['lat'] = e.result.center[1];
+            data['macker'] = new mapboxgl.Marker()
+            .setLngLat([e.result.center[0], e.result.center[1]])
+            .addTo(map);
             // console.log("here is buffer before: ");
             // console.log(...resultRef.current);
             let buffer = [...td,data];
@@ -64,11 +67,11 @@ function Map(){
         // resultRef.current = result;
         console.log("useeffect: ");
         console.log(td);
-        td.forEach((item,index)=>{
-            const marker = new mapboxgl.Marker()
-            .setLngLat([item.lon, item.lat])
-            .addTo(map);
-        })
+        // td.forEach((item,index)=>{
+        //     const marker = new mapboxgl.Marker()
+        //     .setLngLat([item.lon, item.lat])
+        //     .addTo(map);
+        // })
     },[td])
 
     useEffect(()=>{

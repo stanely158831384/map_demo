@@ -3,6 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from 'react';
+import mapboxgl from 'mapbox-gl'; 
+
 
 
 
@@ -34,8 +36,12 @@ export default function DataTable() {
   const [selectionModel, setSelectionModel] = useState([]);;
 
   const onDelete = () => {
-    let selected = [...td.filter((r) => !selectionModel.includes(r.id))];
-    dispatch({type:"customData",value:selected});
+    let selected = [...td.filter((r) => selectionModel.includes(r.id))];
+    selected.forEach((item,index)=>{
+      item.macker.remove();
+    });
+    let notSelected = [...td.filter((r) => !selectionModel.includes(r.id))];
+    dispatch({type:"customData",value:notSelected});
   };
   const onReset = () => {
   };
