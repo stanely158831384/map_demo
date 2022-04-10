@@ -32,8 +32,12 @@ function Map(){
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl
             });
+
         searchBar.on("result", (e) => {
+            console.log(e);
+
             let data = {};
+            data['id'] = e.result.id;
             data['text'] = e.result.text;
             data['lon'] = e.result.center[0];
             data['lat'] = e.result.center[1];
@@ -49,6 +53,7 @@ function Map(){
             // setResult(buffer);
             dispatch({type: "addData",value:data});
         })
+        
         map.addControl(
             searchBar
         );
