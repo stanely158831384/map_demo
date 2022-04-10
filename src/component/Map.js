@@ -7,12 +7,16 @@ import { useEffect } from 'react';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import DataTable from './Table'
 import Counter from './Counter';
+import { useSelector, useDispatch } from "react-redux";
 
 
 function Map(){
-    const [result,setResult] = useState([]);
+    // const [result,setResult] = useState([]);
     const [map, setMap] = useState({});
-    const resultRef = useRef(result);
+    // const resultRef = useRef(result);
+    const dispatch = useDispatch();
+    const td = useSelector((state) => state.td);
+
 
     useEffect(()=>{
         var L = window.L;
@@ -33,16 +37,17 @@ function Map(){
             data['text'] = e.result.text;
             data['lon'] = e.result.center[0];
             data['lat'] = e.result.center[1];
-            console.log("here is buffer before: ");
-            console.log(...resultRef.current);
-            let buffer = [...resultRef.current,data];
-            console.log("here is buffer after: ");
-            console.log(buffer);
+            // console.log("here is buffer before: ");
+            // console.log(...resultRef.current);
+            let buffer = [...td,data];
+            // console.log("here is buffer after: ");
+            // console.log(buffer);
 
             if(buffer.length>=10){
                 buffer.pop();
             }
-            setResult(buffer);
+            // setResult(buffer);
+            dispatch({type: "addData",value:data});
         })
         map.addControl(
             searchBar
@@ -51,15 +56,15 @@ function Map(){
     },[]);
 
     useEffect(()=>{
-        resultRef.current = result;
+        // resultRef.current = result;
         console.log("useeffect: ");
-        console.log(result);
-        result.forEach((item,index)=>{
+        console.log(td);
+        td.forEach((item,index)=>{
             const marker = new mapboxgl.Marker()
             .setLngLat([item.lon, item.lat])
             .addTo(map);
         })
-    },[result])
+    },[td])
 
     useEffect(()=>{
         console.log("has came out")
@@ -80,7 +85,6 @@ function Map(){
         <div id="map"></div>
         <Button id="get-location" variant="contained" align="center" onClick={(e)=>getLocation()}>location</Button>
         <DataTable/>
-        <Counter/>
         </div>
     )
 }
