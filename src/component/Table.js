@@ -47,26 +47,24 @@ export default function DataTable() {
   };
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '50%' }}>
       <div style={{}}>
       <Button variant="contained" color="primary" onClick={onDelete}>
         Delete selected rows
-      </Button>
-      <Button variant="contained" color="primary" onClick={onReset}>
-        Reset selected rows
       </Button>
       </div>
       
       <DataGrid
         rows={td}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         onSelectionModelChange={setSelectionModel}
         selectionModel={selectionModel}
         checkboxSelection
 
       />
+      <br/>
     </div>
   );
 }

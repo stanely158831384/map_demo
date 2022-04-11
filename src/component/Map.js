@@ -5,10 +5,9 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl'; 
 import { useEffect } from 'react';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import DataTable from './Table'
 import Counter from './Counter';
 import { useSelector, useDispatch } from "react-redux";
-import Test from './Test'
+import TimeZone from './TimeZone'
 
 function Map(){
     // const [result,setResult] = useState([]);
@@ -17,6 +16,7 @@ function Map(){
     const dispatch = useDispatch();
     const td = useSelector((state) => state.td);
     const tdRef = useRef(td);
+
 
 
 
@@ -52,12 +52,11 @@ function Map(){
             // console.log(buffer);
             console.log("at remove progress: "+tdRef.current.length);
 
-            if(tdRef.current.length >=10){
-                let removeLastData = [...tdRef.current];
-                removeLastData.pop();
-                console.log("in the remove progress: "+removeLastData.length);
-                dispatch({type:"customData",value:removeLastData});
-            }
+            // if(tdRef.current.length >=10){
+            //     let removeLastData = [...tdRef.current];
+            //     removeLastData.pop();
+            //     dispatch({type:"customData",value:removeLastData});
+            // }
             // setResult(buffer);
             dispatch({type: "addData",value:data});
         })
@@ -72,33 +71,15 @@ function Map(){
         tdRef.current = td;
         console.log("useeffect: ");
         console.log(tdRef.current);
-        // td.forEach((item,index)=>{
-        //     const marker = new mapboxgl.Marker()
-        //     .setLngLat([item.lon, item.lat])
-        //     .addTo(map);
-        // })
     },[td])
 
     useEffect(()=>{
         console.log("has came out")
     })
-    
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            alert("你的浏览器不支持Geolocation API。");
-        }
-    }
-    function showPosition(position) {
-        alert("纬度：" + position.coords.latitude + "<br>经度：" + position.coords.longitude);
-    }
     return(
         <div>
         <div id="map"></div>
-        <Button id="get-location" variant="contained" align="center" onClick={(e)=>getLocation()}>location</Button>
-        <DataTable/>
-        <Test/>
+        
         </div>
     )
 }
