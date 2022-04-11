@@ -16,6 +16,8 @@ function Map(){
     // const resultRef = useRef(result);
     const dispatch = useDispatch();
     const td = useSelector((state) => state.td);
+    const tdRef = useRef(td);
+
 
 
     useEffect(()=>{
@@ -46,12 +48,15 @@ function Map(){
             .addTo(map);
             // console.log("here is buffer before: ");
             // console.log(...resultRef.current);
-            let buffer = [...td,data];
             // console.log("here is buffer after: ");
             // console.log(buffer);
+            console.log("at remove progress: "+tdRef.current.length);
 
-            if(buffer.length>=10){
-                buffer.pop();
+            if(tdRef.current.length >=10){
+                let removeLastData = [...tdRef.current];
+                removeLastData.pop();
+                console.log("in the remove progress: "+removeLastData.length);
+                dispatch({type:"customData",value:removeLastData});
             }
             // setResult(buffer);
             dispatch({type: "addData",value:data});
@@ -64,9 +69,9 @@ function Map(){
     },[]);
 
     useEffect(()=>{
-        // resultRef.current = result;
+        tdRef.current = td;
         console.log("useeffect: ");
-        console.log(td);
+        console.log(tdRef.current);
         // td.forEach((item,index)=>{
         //     const marker = new mapboxgl.Marker()
         //     .setLngLat([item.lon, item.lat])

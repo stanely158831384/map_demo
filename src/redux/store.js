@@ -4,11 +4,11 @@ const counterReducer = (state = { td: [] }, action) => {
     return { counter: state.counter + 1 };
   }
   if(action.type === "addData"){
-    return { td: [...state.td, action.value]}
+    return { td: [action.value,...state.td,]}
   }
-  if(action.type === "removeLastData"){
-      return {td: [...(state.td.pop())]}
-  }
+//   if(action.type === "removeLastData"){
+//       return {td: [...(state.td.pop())]}
+//   }
   if(action.type === "customData"){
       return {td: [...action.value]}
   }
