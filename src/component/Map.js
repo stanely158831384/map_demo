@@ -8,7 +8,7 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import DataTable from './Table'
 import Counter from './Counter';
 import { useSelector, useDispatch } from "react-redux";
-
+import Test from './Test'
 
 function Map(){
     // const [result,setResult] = useState([]);
@@ -98,6 +98,7 @@ function Map(){
         <div id="map"></div>
         <Button id="get-location" variant="contained" align="center" onClick={(e)=>getLocation()}>location</Button>
         <DataTable/>
+        <Test/>
         </div>
     )
 }
