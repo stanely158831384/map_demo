@@ -15,7 +15,7 @@ function LocationPermission(){
     }
     return(
         <div style={{display:'inline'}}>
-            <Button id="get-location" variant="contained" align="center" onClick={(e)=>getLocation()}>location</Button>
+            <Button id="get-location" variant="contained" align="center" onClick={(e)=>getLocation()}>Achieve Location Permission</Button>
         </div>
     );
 }
