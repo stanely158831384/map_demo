@@ -1,62 +1,56 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import mapboxgl from 'mapbox-gl'; 
+import LocationButton from './LocationPermission'
+import '../App.css';
+
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
   {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
+    field: 'text',
+    headerName: 'NAME',
+    width: 150,
   },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
+  { field: 'lon', headerName: 'LONGTITUDE', width: 130 },
+  { field: 'lat', headerName: 'LATITUDE', width: 130 },
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+
 
 export default function DataTable() {
+  const dispatch = useDispatch();
+  const td = useSelector((state) => state.td);
+  const [selectionModel, setSelectionModel] = useState([]);;
+
   const onDelete = () => {
+    let selected = [...td.filter((r) => selectionModel.includes(r.id))];
+    selected.forEach((item,index)=>{
+      item.macker.remove();
+    });
+    let notSelected = [...td.filter((r) => !selectionModel.includes(r.id))];
+    dispatch({type:"customData",value:notSelected});
   };
   const onReset = () => {
   };
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <div>
-      <Button variant="contained" color="primary" onClick={onDelete}>
+    <div style={{ height: 400, marginLeft:'20px' }}>
+      <div style={{marginBottom:'10px'}}>
+      <Button variant="contained" color="primary" onClick={onDelete} style={{display:'inline', marginRight:'5px'}}>
         Delete selected rows
       </Button>
-      <Button variant="contained" color="primary" onClick={onReset}>
-        Reset selected rows
-      </Button>
+      <LocationButton />
       </div>
-      
       <DataGrid
-        rows={rows}
+        rows={td}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        onSelectionModelChange={setSelectionModel}
+        selectionModel={selectionModel}
         checkboxSelection
       />
     </div>

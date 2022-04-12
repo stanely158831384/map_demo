@@ -38,3 +38,14 @@
 }
 
 #map { height: 500px; }
+
+.ts123 {
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+
+  }
+}
