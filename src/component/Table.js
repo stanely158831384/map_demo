@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'; 
-
+import LocationButton from './LocationPermission'
 
 
 
@@ -17,16 +17,6 @@ const columns = [
   },
   { field: 'lon', headerName: 'LONGTITUDE', width: 130 },
   { field: 'lat', headerName: 'LATITUDE', width: 130 },
-  
-  // {
-  //   field: 'fullName',
-  //   headerName: 'Full name',
-  //   description: 'This column has a value getter and is not sortable.',
-  //   sortable: false,
-  //   width: 160,
-  //   valueGetter: (params) =>
-  //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  // },
 ];
 
 
@@ -48,12 +38,12 @@ export default function DataTable() {
 
   return (
     <div style={{ height: 400, width: '50%',marginLeft:'20px' }}>
-      <div style={{}}>
-      <Button variant="contained" color="primary" onClick={onDelete}>
+      <div style={{marginBottom:'10px'}}>
+      <Button variant="contained" color="primary" onClick={onDelete} style={{display:'inline', marginRight:'5px'}}>
         Delete selected rows
       </Button>
+      <LocationButton />
       </div>
-      
       <DataGrid
         rows={td}
         columns={columns}
@@ -62,7 +52,6 @@ export default function DataTable() {
         onSelectionModelChange={setSelectionModel}
         selectionModel={selectionModel}
         checkboxSelection
-
       />
     </div>
   );

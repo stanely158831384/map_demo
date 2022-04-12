@@ -10,10 +10,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import myImg from '../static/global.jpg';
-
+import Clock from 'react-live-clock';
 
 function TimeZone(){
-    const {localTime,setLocalTime} = useState("Loading");
+    const [localTime,setLocalTime] = useState("waiting for your input");
+    const [timeZone,setTimeZone] = useState("Please input a location first");
+    const [loading,setLoading] = useState(false);
     const dispatch = useDispatch();
     const td = useSelector((state) => state.td);
     const accessToken = 'pk.eyJ1Ijoic3RhbmxleTE1ODgzMTM4NCIsImEiOiJjbDFyNm5pa2IwdDl3M2RsbWZhZzdqd3lhIn0.tIb4Xrl64Du1_fLhLP575A';
@@ -31,10 +33,12 @@ function TimeZone(){
         var a =  moment.utc(new Date().toUTCString()).tz(userTimezone);
         //console.log(a.format().substring(11,19));
         const t =  a.format().substring(11,19);
-        document.getElementById("tz").innerHTML = "Time Zone : " + userTimezone;
-        document.getElementById("lt").innerHTML = "The current local time : " + t;
+        // document.getElementById("tz").innerHTML = "Time Zone : " + userTimezone;
+        // document.getElementById("lt").innerHTML = "The current local time : " + t;
 
-        
+        setLocalTime(t);
+        setTimeZone(userTimezone);
+        setLoading(true);
         }
     }
 
@@ -60,10 +64,10 @@ function TimeZone(){
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" id="tz">
-          Time Zone
+          Time Zone: {timeZone}
         </Typography>
         <Typography variant="body2" color="text.secondary" id="lt">
-          {localTime}
+          The current local time: {loading&&<Clock format={'HH:mm:ss'} ticking={true} timezone={timeZone} />}
         </Typography>
       </CardContent>
       <CardActions>

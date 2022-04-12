@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={< Home/>}/>
       </Routes>
     </BrowserRouter>
-    <h6 style={{marginTop:100}}></h6>
+    <h6 style={{marginTop:150}}></h6>
     <SimpleBottomNavigation></SimpleBottomNavigation>
     </div>
   );

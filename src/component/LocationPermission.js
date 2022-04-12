@@ -1,3 +1,5 @@
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
 function LocationPermission(){
 
@@ -12,7 +14,7 @@ function LocationPermission(){
         alert("纬度：" + position.coords.latitude + "<br>经度：" + position.coords.longitude);
     }
     return(
-        <div>
+        <div style={{display:'inline'}}>
             <Button id="get-location" variant="contained" align="center" onClick={(e)=>getLocation()}>location</Button>
         </div>
     );
