@@ -5,19 +5,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'; 
 import LocationButton from './LocationPermission'
-
+import '../App.css';
 
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
   {
     field: 'text',
     headerName: 'NAME',
-    width: 90,
+    width: 150,
   },
   { field: 'lon', headerName: 'LONGTITUDE', width: 130 },
   { field: 'lat', headerName: 'LATITUDE', width: 130 },
 ];
+
 
 
 export default function DataTable() {
@@ -37,7 +37,7 @@ export default function DataTable() {
   };
 
   return (
-    <div style={{ height: 400, width: '50%',marginLeft:'20px' }}>
+    <div style={{ height: 400, marginLeft:'20px' }}>
       <div style={{marginBottom:'10px'}}>
       <Button variant="contained" color="primary" onClick={onDelete} style={{display:'inline', marginRight:'5px'}}>
         Delete selected rows

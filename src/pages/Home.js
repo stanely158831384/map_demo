@@ -15,7 +15,7 @@ function Home(){
             <Map/>
             <div style={{marginTop:10}}>
             <TimeZone/>
-            <DataTable/>
+            <DataTable class = "ts124"/>
             </div>
         </div>
         
