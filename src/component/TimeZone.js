@@ -20,7 +20,6 @@ function TimeZone(){
     const td = useSelector((state) => state.td);
     const accessToken = 'pk.eyJ1Ijoic3RhbmxleTE1ODgzMTM4NCIsImEiOiJjbDFyNm5pa2IwdDl3M2RsbWZhZzdqd3lhIn0.tIb4Xrl64Du1_fLhLP575A';
 
-
     async function testAPI(){
         const query = await fetch(
             `https://api.mapbox.com/v4/examples.4ze9z6tv/tilequery/${td[0].lon},${td[0].lat}.json?access_token=${accessToken}`,
