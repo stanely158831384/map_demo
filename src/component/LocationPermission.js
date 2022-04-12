@@ -7,11 +7,11 @@ function LocationPermission(){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            alert("你的浏览器不支持Geolocation API。");
+            alert("your browswer doesn't support Geolocation API。");
         }
     }
     function showPosition(position) {
-        alert("纬度：" + position.coords.latitude + "<br>经度：" + position.coords.longitude);
+        alert("latitude：" + position.coords.latitude + "<br>longtitude：" + position.coords.longitude);
     }
     return(
         <div style={{display:'inline'}}>

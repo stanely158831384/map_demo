@@ -1,6 +1,5 @@
 
 import '../App.css';
-// import { makeStyles } from '@material-ui/styles';
 import React, { useState } from 'react';
 import DataTable from '../component/Table'
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -15,7 +14,7 @@ function Home(){
             <Map/>
             <div style={{marginTop:10}}>
             <TimeZone/>
-            <DataTable class = "ts124"/>
+            <DataTable/>
             </div>
         </div>
         
