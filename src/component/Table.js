@@ -47,7 +47,7 @@ export default function DataTable() {
   };
 
   return (
-    <div style={{ height: 400, width: '50%' }}>
+    <div style={{ height: 400, width: '50%',marginLeft:'20px' }}>
       <div style={{}}>
       <Button variant="contained" color="primary" onClick={onDelete}>
         Delete selected rows
@@ -64,7 +64,6 @@ export default function DataTable() {
         checkboxSelection
 
       />
-      <br/>
     </div>
   );
 }

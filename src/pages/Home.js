@@ -13,13 +13,10 @@ function Home(){
     return(
         <div>
             <Map/>
-            <DataTable/>
+            <div style={{marginTop:10}}>
             <TimeZone/>
-            <></>
-            <></>
-            <></>
-            <></>
-
+            <DataTable/>
+            </div>
         </div>
         
     );

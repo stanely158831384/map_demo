@@ -8,21 +8,21 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+
 
 function App() {
   return (
     <div>
     <ResponsiveAppBar></ResponsiveAppBar>
+    <h6 style={{marginTop:75}}></h6>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={< Home/>}/>
       </Routes>
     </BrowserRouter>
+    <h6 style={{marginTop:100}}></h6>
     <SimpleBottomNavigation></SimpleBottomNavigation>
     </div>
- 
   );
 }
 
